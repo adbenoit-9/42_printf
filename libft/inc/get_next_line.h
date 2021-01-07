@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:17:42 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/06 22:24:15 by adbenoit         ###   ########.fr       */
+/*   Updated: 2021/01/07 02:37:16 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 # define BUFFER_SIZE 4096
 

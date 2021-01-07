@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 16:03:04 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/06 23:49:29 by adbenoit         ###   ########.fr       */
+/*   Created: 2021/01/07 02:36:00 by adbenoit          #+#    #+#             */
+/*   Updated: 2021/01/07 02:36:22 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ size_t			print_space(t_arg *format, size_t len);
 size_t			print_arg(va_list ap, t_arg *format, size_t ret);
 int				print_char(char c);
 int				ft_printf(const char *str, ...);
-size_t			print_in_format(unsigned int n, t_arg *format, size_t len, char *base);
+size_t			print_in_format(unsigned int n, t_arg *format, size_t len,
+char *base);
 size_t			ft_putnbr_base(unsigned int n, size_t len, char *base);
 size_t			print_c(char c, t_arg *format, size_t ret);
 size_t			print_d(int n, t_arg *format, size_t ret);
