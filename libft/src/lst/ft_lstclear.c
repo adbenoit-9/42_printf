@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adbenoit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 16:12:59 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 00:19:14 by adbenoit         ###   ########.fr       */
+/*   Created: 2019/11/11 18:23:05 by adbenoit          #+#    #+#             */
+/*   Updated: 2019/11/16 16:21:56 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int k;
-	k = 15;
-	printf("ORDI: %d\n", printf("%d\n", -424));
-	printf("MOI: %d\n", ft_printf("%d\n", -424));
+	t_list	*tmp;
+
+	if (*lst)
+	{
+		while ((*lst)->next)
+		{
+			tmp = *lst;
+			*lst = (*lst)->next;
+			ft_lstdelone(tmp, del);
+		}
+		ft_lstdelone(*lst, del);
+		*lst = NULL;
+	}
 }

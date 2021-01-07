@@ -6,36 +6,63 @@
 #    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2019/12/04 18:27:15 by adbenoit         ###   ########.fr        #
+#    Updated: 2021/01/07 00:39:41 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=  ft_arg.c ft_putarg.c ft_putnbr_fd.c ft_atoi.c ft_putchar_fd.c ft_putstr_fd.c ft_printf.c ft_putnbr_base.c ft_strlen.c ft_putptr.c
+NAME		=	libftprintf.a
 
-OBJS	= ${SRCS:.c=.o}
+INC			= ./
 
-CFLAGS	= -Wall -Wextra -Werror
+HEADER		= $(INC)ft_printf.h
 
-NAME	= libftprintf.a
+SRC_DIR	=	./
 
-RM	= rm -f
+SRC			= 	ft_setformat.c		print_arg.c \
+				print_ux.c			print_p.c \
+				print_c.c			print_s.c \
+				ft_printf.c			print_d.c
 
-${NAME}: ${OBJS}
-	ar rc ${NAME} ${OBJS}
+LIB_DIR		=	libft/
 
-bonus:	${NAME}
-	ar rc ${NAME}
+LIB			=	$(LIB_DIR)libft.a
 
-all:	${NAME}
+LIB_OBJ		=	$(LIB_DIR)obj/*.o
 
-.c.o:
-	gcc ${CFLAGS} -c $< -o ${<:.c=.o}
+OBJ_DIR	=	obj/
+
+OBJ_NAME	=	$(SRC:.c=.o)
+
+OBJ			=	$(addprefix $(OBJ_DIR),$(OBJ_NAME))
+
+CFLAGS		=	-Wall -Wextra -Werror
+
+RM			=	rm -f
+
+all:	$(LIB) $(NAME)
+
+$(LIB) :
+	@make -C $(LIB_DIR)
+
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ) $(LIB_OBJ)
+	@printf "\n"
+	@echo "Compilation of \033[33;1m$(NAME)\033[0;1m: [\033[1;32mOK\033[0;1m]\033[0m"
+
+$(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(HEADER)
+	@printf "\033[34;1m|\033[0;m"
+	@mkdir $(OBJ_DIR) 2> /dev/null || true
+	@gcc $(CFLAGS) -I$(INC) -c $< -o $@
 
 clean:
-	${RM} ${OBJS}
+	@$(RM) $(OBJ)
+	@make -C $(LIB_DIR) clean
+	@echo "\033[33;1mFt_printf\033[0;1m: objects deleted\033[0m"
 
 fclean: clean
-	${RM} ${NAME} 
+	@$(RM) $(NAME) 
+	@make -C $(LIB_DIR) fclean
+	@echo "\033[33;1mFt_printf\033[0;1m: $(NAME) deleted\033[0m"
 
 re: fclean all
 

@@ -6,13 +6,13 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 10:47:00 by adbenoit          #+#    #+#             */
-/*   Updated: 2019/12/13 16:05:45 by adbenoit         ###   ########.fr       */
+/*   Updated: 2021/01/07 01:25:47 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int		ft_type(char c)
+static int	ft_istype(char c)
 {
 	if (c == NUM1 || c == NUM2 || c == HEX1 || c == HEX2 || c == STR || c == PTR
 									|| c == CHAR || c == UN_INT || c == '%')
@@ -20,49 +20,44 @@ int		ft_type(char c)
 	return (0);
 }
 
-int		ft_complete(const char *str, va_list ap, t_arg *arg, int *i)
+static int	ft_setarg(const char *str, va_list ap, t_arg *format, int *i)
 {
 	if (str[*i] && str[*i + 1] && str[*i] == '%')
 	{
-		(*i)++;
-		arg->flag = ft_flag(str, i);
-		if ((arg->width = ft_width(ap, arg, str, i)) == -2)
+		++(*i);
+		format->flag = ft_setflag(str, i);
+		format->width = ft_setwidth(ap, format, str, i);
+		format->prec = ft_setprec(str, i, ap);
+		if (format->width == -2 || format->prec == -2)
 			return (-1);
-		if ((arg->prec = ft_precision(str, i, ap)) == -2)
-			return (-1);
-		arg->type = str[*i];
+		format->type = str[*i];
 	}
 	return (0);
-}
-
-int		ft_free(void *tab, int ret)
-{
-	free(tab);
-	return (ret);
 }
 
 int		ft_printf(const char *str, ...)
 {
 	int		i;
 	size_t	count;
-	t_arg	arg;
+	t_arg	format;
 	va_list	ap;
 
 	va_start(ap, str);
-	i = -1;
+	i = 0;
 	count = 0;
-	while (str[++i])
+	while (str[i])
 	{
 		if (str[i + 1] && str[i] == '%')
 		{
-			if (ft_complete(str, ap, &arg, &i) == -1)
+			if (ft_setarg(str, ap, &format, &i) == -1)
 				return (-1);
-			if (!ft_type(arg.type))
+			if (ft_istype(format.type) == 0)
 				return (-1);
-			count = ft_putarg(ap, &arg, count);
+			count = print_arg(ap, &format, count);
 		}
 		else
-			ft_putchar_count(str[i], &count);
+			count += print_char(str[i]);
+		++i;
 	}
 	va_end(ap);
 	return (count);

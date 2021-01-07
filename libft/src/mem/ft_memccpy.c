@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 16:12:59 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 00:19:14 by adbenoit         ###   ########.fr       */
+/*   Created: 2019/11/05 14:46:08 by adbenoit          #+#    #+#             */
+/*   Updated: 2021/01/06 01:58:17 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int k;
-	k = 15;
-	printf("ORDI: %d\n", printf("%d\n", -424));
-	printf("MOI: %d\n", ft_printf("%d\n", -424));
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((char *)dst)[i] = ((char *)src)[i];
+		if (((char *)dst)[i] == (char)c)
+			return (dst + i + 1);
+		++i;
+	}
+	return (0);
 }

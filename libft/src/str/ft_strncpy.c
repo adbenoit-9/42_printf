@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 16:12:59 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 00:19:14 by adbenoit         ###   ########.fr       */
+/*   Created: 2021/01/06 02:18:48 by adbenoit          #+#    #+#             */
+/*   Updated: 2021/01/06 02:22:18 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	int k;
-	k = 15;
-	printf("ORDI: %d\n", printf("%d\n", -424));
-	printf("MOI: %d\n", ft_printf("%d\n", -424));
+	size_t	i;
+
+	if (dest == NULL || src == NULL)
+		return (dest);
+	i = 0;
+	while (src[i] && i < n)
+	{
+		dest[i] = src[i];
+		++i;
+	}
+	dest[i] = 0;
+	return (dest);
 }

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adbenoit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 16:12:59 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 00:19:14 by adbenoit         ###   ########.fr       */
+/*   Created: 2019/11/04 13:33:18 by adbenoit          #+#    #+#             */
+/*   Updated: 2019/11/11 14:06:16 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+int	ft_isdigit(int c)
 {
-	int k;
-	k = 15;
-	printf("ORDI: %d\n", printf("%d\n", -424));
-	printf("MOI: %d\n", ft_printf("%d\n", -424));
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

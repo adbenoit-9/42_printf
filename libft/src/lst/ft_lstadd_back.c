@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adbenoit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 16:12:59 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 00:19:14 by adbenoit         ###   ########.fr       */
+/*   Created: 2019/11/11 17:08:21 by adbenoit          #+#    #+#             */
+/*   Updated: 2019/11/14 16:14:46 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	int k;
-	k = 15;
-	printf("ORDI: %d\n", printf("%d\n", -424));
-	printf("MOI: %d\n", ft_printf("%d\n", -424));
+	if (alst)
+	{
+		if (*alst == NULL)
+			*alst = new;
+		else
+			ft_lstlast(*alst)->next = new;
+	}
 }

@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 16:12:59 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 00:19:14 by adbenoit         ###   ########.fr       */
+/*   Created: 2019/11/07 18:58:30 by adbenoit          #+#    #+#             */
+/*   Updated: 2021/01/06 01:58:17 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int k;
-	k = 15;
-	printf("ORDI: %d\n", printf("%d\n", -424));
-	printf("MOI: %d\n", ft_printf("%d\n", -424));
+	unsigned int	i;
+	char			*str;
+
+	if (s == NULL || f == NULL)
+		return (NULL);
+	i = 0;
+	if (!(str = malloc(sizeof(char) * (ft_strlen(s) + 1))))
+		return (NULL);
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		++i;
+	}
+	str[i] = 0;
+	return (str);
 }

@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tabdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 16:12:59 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 00:19:14 by adbenoit         ###   ########.fr       */
+/*   Created: 2021/01/06 01:26:19 by adbenoit          #+#    #+#             */
+/*   Updated: 2021/01/06 02:04:35 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char	**ft_tabdup(char *tab[])
 {
-	int k;
-	k = 15;
-	printf("ORDI: %d\n", printf("%d\n", -424));
-	printf("MOI: %d\n", ft_printf("%d\n", -424));
+	char	**copy;
+	size_t	size;
+	size_t	i;
+
+	copy = NULL;
+	size = 0;
+	i = 0;
+	size = ft_tabsize(tab);
+	if (!(copy = malloc(sizeof(char *) * (size + 1))))
+		return (NULL);
+	while (i < size)
+	{
+		if (!(copy[i] = ft_strdup(tab[i])))
+		{
+			ft_freetab(copy);
+			return (NULL);
+		}
+		++i;
+	}
+	copy[i] = NULL;
+	return (copy);
 }
