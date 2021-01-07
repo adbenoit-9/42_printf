@@ -1,6 +1,6 @@
 # PRINTF
 
-"Because putnbr and putstr aren’t enough"
+*"Because putnbr and putstr aren’t enough"*
 
 ## Objective
 
