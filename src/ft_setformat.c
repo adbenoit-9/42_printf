@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg.c                                           :+:      :+:    :+:   */
+/*   ft_setformat.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 14:05:19 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 00:37:00 by adbenoit         ###   ########.fr       */
+/*   Updated: 2021/01/07 02:18:03 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*ft_getnb(const char *str, int *i)
 	return (nb);
 }
 
-char	ft_setflag(const char *str, int *i)
+char		ft_setflag(const char *str, int *i)
 {
 	char	ret;
 
@@ -53,7 +53,7 @@ char	ft_setflag(const char *str, int *i)
 	return (ret);
 }
 
-int		ft_setwidth(va_list ap, t_arg *format, const char *str, int *i)
+int			ft_setwidth(va_list ap, t_arg *format, const char *str, int *i)
 {
 	char	*nb;
 	int		nbr;
@@ -77,7 +77,7 @@ int		ft_setwidth(va_list ap, t_arg *format, const char *str, int *i)
 	return (ft_free(nb, nbr));
 }
 
-int		ft_setprec(const char *str, int *i, va_list ap)
+int			ft_setprec(const char *str, int *i, va_list ap)
 {
 	int		nbr;
 	char	*nb;

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 10:47:00 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 01:25:47 by adbenoit         ###   ########.fr       */
+/*   Updated: 2021/01/07 02:18:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ static int	ft_setarg(const char *str, va_list ap, t_arg *format, int *i)
 	return (0);
 }
 
-int		ft_printf(const char *str, ...)
+int			ft_printf(const char *str, ...)
 {
 	int		i;
-	size_t	count;
+	size_t	ret;
 	t_arg	format;
 	va_list	ap;
 
 	va_start(ap, str);
 	i = 0;
-	count = 0;
+	ret = 0;
 	while (str[i])
 	{
 		if (str[i + 1] && str[i] == '%')
@@ -53,12 +53,12 @@ int		ft_printf(const char *str, ...)
 				return (-1);
 			if (ft_istype(format.type) == 0)
 				return (-1);
-			count = print_arg(ap, &format, count);
+			ret = print_arg(ap, &format, ret);
 		}
 		else
-			count += print_char(str[i]);
+			ret += print_char(str[i]);
 		++i;
 	}
 	va_end(ap);
-	return (count);
+	return (ret);
 }

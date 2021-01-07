@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putarg.c                                        :+:      :+:    :+:   */
+/*   print_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 14:07:18 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 00:39:41 by adbenoit         ###   ########.fr       */
+/*   Updated: 2021/01/07 02:19:28 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,45 @@
 
 size_t	print_space(t_arg *format, size_t len)
 {
-	size_t	count;
-	char	ret;
+	size_t	ret;
+	char	flag;
 
-	count = 0;
-	ret = format->flag;
+	ret = 0;
+	flag = format->flag;
 	if (format->flag == '-')
-		ret = ' ';
-	if ((format->type == STR && format->prec > (int)len) || format->type == CHAR ||
-													format->type == '%')
+		flag = ' ';
+	if ((format->type == STR && format->prec > (int)len) ||
+	format->type == CHAR || format->type == '%')
 		format->prec = -1;
 	while (format->width > format->prec && (format->width > (int)len ||
-						(format->type == STR && format->prec > -1)))
+	(format->type == STR && format->prec > -1)))
 	{
-		ft_putchar_fd(ret, 1);
+		ret += print_char(flag);
 		format->width--;
-		count++;
 	}
-	return (count);
+	return (ret);
 }
 
-size_t	print_arg(va_list ap, t_arg *format, size_t count)
+size_t	print_arg(va_list ap, t_arg *format, size_t ret)
 {
 	static char	*base_x = "0123456789abcdef";
 	static char	*base_ux = "0123456789ABCDEF";
 
 	if (format->type == NUM1 || format->type == NUM2)
-		count = print_d(va_arg(ap, int), format, count);
+		ret = print_d(va_arg(ap, int), format, ret);
 	else if (format->type == UN_INT)
-		count = print_ux(va_arg(ap, unsigned int), format, count, "0123456789");
+		ret = print_ux(va_arg(ap, unsigned int), format, ret, "0123456789");
 	else if (format->type == HEX1)
-		count = print_ux(va_arg(ap, unsigned int), format, count, base_x);
+		ret = print_ux(va_arg(ap, unsigned int), format, ret, base_x);
 	else if (format->type == HEX2)
-		count = print_ux(va_arg(ap, unsigned int), format, count, base_ux);
+		ret = print_ux(va_arg(ap, unsigned int), format, ret, base_ux);
 	else if (format->type == CHAR)
-		count = print_c((unsigned char)va_arg(ap, int), format, count);
+		ret = print_c((unsigned char)va_arg(ap, int), format, ret);
 	else if (format->type == STR)
-		count = print_s(va_arg(ap, char *), format, count);
+		ret = print_s(va_arg(ap, char *), format, ret);
 	else if (format->type == PTR)
-		count = print_p(va_arg(ap, unsigned long int), format, count, base_x);
+		ret = print_p(va_arg(ap, unsigned long int), format, ret, base_x);
 	else if (format->type == '%')
-		count = print_c('%', format, count);
-	return (count);
+		ret = print_c('%', format, ret);
+	return (ret);
 }

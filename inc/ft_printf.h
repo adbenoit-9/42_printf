@@ -40,17 +40,17 @@ char			ft_setflag(const char *str, int *i);
 int				ft_setprec(const char *str, int *i, va_list ap);
 int				ft_setwidth(va_list ap, t_arg *format, const char *str, int *i);
 size_t			print_space(t_arg *format, size_t len);
-size_t			print_arg(va_list ap, t_arg *format, size_t count);
+size_t			print_arg(va_list ap, t_arg *format, size_t ret);
 int				print_char(char c);
 int				ft_printf(const char *str, ...);
 size_t			print_in_format(unsigned int n, t_arg *format, size_t len, char *base);
 size_t			ft_putnbr_base(unsigned int n, size_t len, char *base);
-size_t			print_c(char c, t_arg *format, size_t count);
-size_t			print_d(int n, t_arg *format, size_t count);
-size_t			print_s(char *s, t_arg *format, size_t count);
-size_t			print_ux(unsigned int n, t_arg *format, size_t count,
+size_t			print_c(char c, t_arg *format, size_t ret);
+size_t			print_d(int n, t_arg *format, size_t ret);
+size_t			print_s(char *s, t_arg *format, size_t ret);
+size_t			print_ux(unsigned int n, t_arg *format, size_t ret,
 														char *base);
-size_t			print_p(unsigned long int n, t_arg *format, size_t count,
+size_t			print_p(unsigned long int n, t_arg *format, size_t ret,
 														char *base);
 
 #endif

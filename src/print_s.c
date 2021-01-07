@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 19:25:11 by adbenoit          #+#    #+#             */
-/*   Updated: 2021/01/07 01:25:24 by adbenoit         ###   ########.fr       */
+/*   Updated: 2021/01/07 02:16:03 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static size_t	print_str(char *s)
 	return (len);
 }
 
-size_t		print_s(char *s, t_arg *format, size_t count)
+size_t			print_s(char *s, t_arg *format, size_t ret)
 {
 	int len;
 
@@ -36,17 +36,17 @@ size_t		print_s(char *s, t_arg *format, size_t count)
 	else
 		len = ft_strlen(s);
 	if (format && format->flag != '-')
-		count += print_space(format, len);
+		ret += print_space(format, len);
 	if (format && format->prec >= 0 && format->prec < len)
 	{
 		if (s)
 			write(1, s, format->prec);
 		else
 			write(1, "(null)", format->prec);
-		count += format->prec;
+		ret += format->prec;
 	}
 	else
-		count += print_str(s);
-	count += print_space(format, len);
-	return (count);
+		ret += print_str(s);
+	ret += print_space(format, len);
+	return (ret);
 }
