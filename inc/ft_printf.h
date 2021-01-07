@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "libft/inc/libft.h"
+# include "../libft/inc/libft.h"
 
 # define CHAR 'c'
 # define STR 's'

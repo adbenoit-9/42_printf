@@ -6,17 +6,17 @@
 #    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2021/01/07 00:39:41 by adbenoit         ###   ########.fr        #
+#    Updated: 2021/01/07 01:30:43 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libftprintf.a
 
-INC			= ./
+INC			=	inc/
 
-HEADER		= $(INC)ft_printf.h
+HEADER		=	$(INC)ft_printf.h
 
-SRC_DIR	=	./
+SRC_DIR		=	src/
 
 SRC			= 	ft_setformat.c		print_arg.c \
 				print_ux.c			print_p.c \
@@ -37,7 +37,7 @@ OBJ			=	$(addprefix $(OBJ_DIR),$(OBJ_NAME))
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-RM			=	rm -f
+RM			=	rm -rf
 
 all:	$(LIB) $(NAME)
 
@@ -55,7 +55,7 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(HEADER)
 	@gcc $(CFLAGS) -I$(INC) -c $< -o $@
 
 clean:
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJ_DIR)
 	@make -C $(LIB_DIR) clean
 	@echo "\033[33;1mFt_printf\033[0;1m: objects deleted\033[0m"
 
