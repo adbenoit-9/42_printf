@@ -1,4 +1,4 @@
-# ft_printf
+# FT_PRINTF
 
 *"Because putnbr and putstr aren’t enough"*
 
